@@ -23,7 +23,7 @@ class TodoAppComponent extends SatoriComponent {
 	render() {
 		return this.view.section({class: 'todoapp'}, [
 			this.view.header({class: 'header'}, [
-				this.view.h1('todos'),
+				this.view.h1({}, 'todos'),
 				this.view.input({class: 'new-todo', attr: {placeholder: 'What needs to be done?', autofocus: ''},
 					keydown: this.view.inputKeyHandler(value => this.state.model.add(value), {reset: true}),
 				}),
@@ -40,13 +40,13 @@ class TodoAppComponent extends SatoriComponent {
 			this.view.footer({class: 'footer', show: () => this.state.model.todos.length}, [
 				this.view.span({class: 'todo-count'},
 					() => [
-						this.view.strong(this.state.model.remaining.length), ' ',
+						this.view.strong({}, this.state.model.remaining.length), ' ',
 						this.view.pluralize('item', this.state.model.remaining.length), ' ', 'left',
 					]
 				),
 				this.view.ul({class: 'filters'},
 					() => Array.from(this.view.unproxy(this.state.filters)).map(filter =>
-						this.view.li(
+						this.view.li({},
 							this.view.a({class: {selected: () => filter[0] === this.state.filter},
 								attr: {href: '#/' + filter[0]}, content: filter[1].title,
 							})
